@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://terrain/Screen.gd" type="Script" id=1]
+[ext_resource path="res://assets/background.jpg" type="Texture" id=2]
+[ext_resource path="res://assets/star.png" type="Texture" id=3]
+
+[sub_resource type="ParticlesMaterial" id=1]
+emission_shape = 2
+emission_box_extents = Vector3( 900, 500, 0 )
+direction = Vector3( 0, 0, 0 )
+gravity = Vector3( 0, 0, 0 )
+tangential_accel = 100.0
+tangential_accel_random = 1.0
+angle = 45.0
+angle_random = 0.5
+scale = 0.01
+scale_random = 0.01
+color = Color( 0.866667, 0.980392, 0.992157, 1 )
+
+[node name="terrain" type="Node2D"]
+
+[node name="Background" type="Sprite" parent="."]
+position = Vector2( 960, 540 )
+scale = Vector2( 2.02106, 3.08581 )
+texture = ExtResource( 2 )
+script = ExtResource( 1 )
+
+[node name="Particles2D" type="Particles2D" parent="."]
+position = Vector2( 978, 542 )
+amount = 200
+lifetime = 2.0
+speed_scale = 0.01
+draw_order = 1
+process_material = SubResource( 1 )
+texture = ExtResource( 3 )
