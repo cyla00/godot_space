@@ -1,14 +1,10 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://terrain/Screen.gd" type="Script" id=1]
 [ext_resource path="res://assets/background.png" type="Texture" id=2]
 [ext_resource path="res://assets/star.png" type="Texture" id=3]
-[ext_resource path="res://addons/rmsmartshape/shapes/point_array.gd" type="Script" id=4]
-[ext_resource path="res://addons/rmsmartshape/shapes/point.gd" type="Script" id=5]
-[ext_resource path="res://addons/rmsmartshape/shapes/shape_closed.gd" type="Script" id=6]
-[ext_resource path="res://addons/rmsmartshape/vertex_properties.gd" type="Script" id=7]
-[ext_resource path="res://addons/rmsmartshape/materials/shape_material.gd" type="Script" id=8]
 [ext_resource path="res://assets/black.png" type="Texture" id=9]
+[ext_resource path="res://player/rocket.tscn" type="PackedScene" id=10]
 
 [sub_resource type="ParticlesMaterial" id=1]
 emission_shape = 2
@@ -23,125 +19,11 @@ scale = 0.01
 scale_random = 0.01
 color = Color( 0.866667, 0.980392, 0.992157, 1 )
 
-[sub_resource type="Resource" id=2]
-script = ExtResource( 7 )
-texture_idx = 0
-flip = false
-width = 1.0
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 16.5, 540 )
 
-[sub_resource type="Resource" id=3]
-script = ExtResource( 5 )
-position = Vector2( -0.00692749, 1023.91 )
-point_in = Vector2( 0, 0 )
-point_out = Vector2( 0, 0 )
-properties = SubResource( 2 )
-
-[sub_resource type="Resource" id=4]
-script = ExtResource( 7 )
-texture_idx = 0
-flip = false
-width = 1.0
-
-[sub_resource type="Resource" id=5]
-script = ExtResource( 5 )
-position = Vector2( 1920, 1080.1 )
-point_in = Vector2( 0, 0 )
-point_out = Vector2( 0, 0 )
-properties = SubResource( 4 )
-
-[sub_resource type="Resource" id=6]
-script = ExtResource( 7 )
-texture_idx = 0
-flip = false
-width = 1.0
-
-[sub_resource type="Resource" id=7]
-script = ExtResource( 5 )
-position = Vector2( -0.144623, 1079.35 )
-point_in = Vector2( 0, 0 )
-point_out = Vector2( 0, 0 )
-properties = SubResource( 6 )
-
-[sub_resource type="Resource" id=8]
-script = ExtResource( 7 )
-texture_idx = 0
-flip = false
-width = 1.0
-
-[sub_resource type="Resource" id=9]
-script = ExtResource( 5 )
-position = Vector2( -0.00692749, 1023.91 )
-point_in = Vector2( 0, 0 )
-point_out = Vector2( 0, 0 )
-properties = SubResource( 8 )
-
-[sub_resource type="Resource" id=10]
-script = ExtResource( 7 )
-texture_idx = 1
-flip = false
-width = 1.0
-
-[sub_resource type="Resource" id=11]
-script = ExtResource( 5 )
-position = Vector2( 1919.8, 1027.12 )
-point_in = Vector2( 0, 0 )
-point_out = Vector2( 0, 0 )
-properties = SubResource( 10 )
-
-[sub_resource type="Resource" id=12]
-script = ExtResource( 7 )
-texture_idx = 0
-flip = false
-width = 1.0
-
-[sub_resource type="Resource" id=13]
-script = ExtResource( 5 )
-position = Vector2( 1276.5, 893.732 )
-point_in = Vector2( 0, 0 )
-point_out = Vector2( 0, 0 )
-properties = SubResource( 12 )
-
-[sub_resource type="Resource" id=14]
-script = ExtResource( 7 )
-texture_idx = 0
-flip = false
-width = 1.0
-
-[sub_resource type="Resource" id=15]
-script = ExtResource( 5 )
-position = Vector2( 703.254, 893.534 )
-point_in = Vector2( 0, 0 )
-point_out = Vector2( 0, 0 )
-properties = SubResource( 14 )
-
-[sub_resource type="Resource" id=16]
-script = ExtResource( 4 )
-_points = {
-10: SubResource( 3 ),
-11: SubResource( 5 ),
-12: SubResource( 7 ),
-13: SubResource( 9 ),
-14: SubResource( 11 ),
-21: SubResource( 13 ),
-22: SubResource( 15 )
-}
-_point_order = [ 10, 22, 21, 14, 11, 12, 13 ]
-_constraints = {
-[ 10, 13 ]: 15
-}
-_next_key = 23
-
-[sub_resource type="Resource" id=17]
-script = ExtResource( 8 )
-_edge_meta_materials = [  ]
-fill_textures = [ ExtResource( 9 ) ]
-fill_texture_normals = [  ]
-fill_texture_z_index = 0
-fill_mesh_offset = 0.0
-render_offset = 0.0
-
-[sub_resource type="RectangleShape2D" id=18]
-extents = Vector2( 287, 93 )
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 960, 60 )
 
 [node name="terrain" type="Node2D"]
 script = ExtResource( 1 )
@@ -159,23 +41,53 @@ draw_order = 1
 process_material = SubResource( 1 )
 texture = ExtResource( 3 )
 
-[node name="SS2D_Shape_Closed" type="Node2D" parent="."]
-z_index = 50
-script = ExtResource( 6 )
-_points = SubResource( 16 )
-material_overrides = {
-}
-shape_material = SubResource( 17 )
-tessellation_stages = 5
-tessellation_tolerence = 4.0
-flip_edges = false
-render_edges = true
-collision_size = 32.0
-collision_offset = 0.0
-collision_polygon_node_path = NodePath("")
+[node name="StaticBody2D" type="StaticBody2D" parent="Background"]
 
-[node name="StaticBody2D" type="StaticBody2D" parent="SS2D_Shape_Closed"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Background/StaticBody2D"]
+position = Vector2( 975.5, 0 )
+shape = SubResource( 3 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="SS2D_Shape_Closed/StaticBody2D"]
-position = Vector2( 990, 987 )
-shape = SubResource( 18 )
+[node name="StaticBody2D2" type="StaticBody2D" parent="Background"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Background/StaticBody2D2"]
+position = Vector2( -976, 0 )
+shape = SubResource( 3 )
+
+[node name="Background2" type="Sprite" parent="."]
+position = Vector2( 960, -539 )
+texture = ExtResource( 2 )
+
+[node name="Particles2D" type="Particles2D" parent="Background2"]
+position = Vector2( 17.9999, 2 )
+amount = 200
+lifetime = 2.0
+speed_scale = 0.01
+draw_order = 1
+process_material = SubResource( 1 )
+texture = ExtResource( 3 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Background2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Background2/StaticBody2D"]
+position = Vector2( 975.5, 0 )
+shape = SubResource( 3 )
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="Background2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Background2/StaticBody2D2"]
+position = Vector2( -976, 0 )
+shape = SubResource( 3 )
+
+[node name="floor" type="StaticBody2D" parent="."]
+
+[node name="Black" type="Sprite" parent="floor"]
+position = Vector2( 960, 1020 )
+scale = Vector2( 6.4, 0.714286 )
+texture = ExtResource( 9 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="floor"]
+position = Vector2( 960, 1020 )
+shape = SubResource( 2 )
+
+[node name="rocket" parent="." instance=ExtResource( 10 )]
+position = Vector2( 960, 872 )
