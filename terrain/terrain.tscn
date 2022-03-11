@@ -36,7 +36,8 @@ texture = ExtResource( 2 )
 
 [node name="Moon" type="Sprite" parent="background1"]
 modulate = Color( 0.87451, 1, 0.960784, 1 )
-position = Vector2( 802, -348 )
+position = Vector2( 729, -336 )
+rotation = 0.460767
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 5 )
 

@@ -59,6 +59,7 @@ drag_margin_bottom = 0.0
 
 [node name="Particles2D" type="Particles2D" parent="KinematicBody2D"]
 position = Vector2( 0, 120 )
+emitting = false
 amount = 20
 process_material = SubResource( 2 )
 texture = ExtResource( 3 )
